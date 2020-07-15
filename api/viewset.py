@@ -16,13 +16,13 @@ class StudentViewSet(viewsets.ViewSet):
         queryset = student.objects.all()
         # print(queryset,"hiiii")
         serializer = studentSerializer(queryset, many=True)
-        print(Response(serializer.data),"hiiii")
+        # print(Response(serializer.data),"hiiii")
         return Response(serializer.data)
     def retrieve(self, request, pk=None):
         queryset = student.objects.all()
         students = get_object_or_404(queryset, pk=pk)
         # print(queryset[0].name,"hiiii")
-        queryset[0].a=5
+        
         serializer = studentSerializer(students)
         return Response(serializer.data)
         
