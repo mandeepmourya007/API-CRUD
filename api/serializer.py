@@ -2,8 +2,15 @@ from rest_framework import serializers
 from . models import student
 
 class studentSerializer(serializers.ModelSerializer):
-    class Meta:
-        model= student
-        fields="__all__"
     
+    
+    size = serializers.SerializerMethodField('get_size')
 
+    def get_size(self, student):
+        return  len(student.name)
+    class Meta:
+        model = student
+        fields = ["rollno","name","size"]
+    
+    
+    

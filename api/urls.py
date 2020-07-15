@@ -8,4 +8,5 @@ router.register('student', StudentViewSet)
 
 urlpatterns = [
     path('', include(router.urls)),
+    # path('student/<int:pk>/', StudentViewSet.as_view()),
 ]
