@@ -3,6 +3,10 @@ from rest_framework.response import Response
 from .serializer import studentSerializer
 from .models import student
 from django.shortcuts import get_object_or_404
+from rfw.celery import *
+from rest_framework.decorators import action
+
+
 
 class StudentViewSet(viewsets.ViewSet):
     """
@@ -11,8 +15,18 @@ class StudentViewSet(viewsets.ViewSet):
     queryset = student.objects.all()
     serializer_class = studentSerializer
 
+    
+    @action(detail=False)
+    # @action(detail=True,methods=["GET"])
+    def  task(self,request):
+
+        debug_task.delay()
+        return Response({"task":"under progress"})
+
 
     def list(self, request):
+      
+        
         queryset = student.objects.all()
         # print(queryset,"hiiii")
         serializer = studentSerializer(queryset, many=True)
