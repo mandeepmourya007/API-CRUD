@@ -42,7 +42,7 @@ def save_to_csv(fields,rows,file_name):
 
   # # writing to csv file  
   
-  with open(file_name, 'w') as csvfile:  
+  with open(file_name, 'w',encoding="utf-8") as csvfile:  
       # creating a csv writer object  
       csv_writer = csv.writer(csvfile)  
           
@@ -69,8 +69,9 @@ def search(api_key,query):
   rows =[]
   for item in data:
       rows.append( [item['snippet']['title'], item['snippet']['description']] )
+      # rows.append(  item['snippet']['description'] )
       
-  
+  print(rows)
   return {'fields':['title','description'],'rows':[rows]}
 
 # this api key we get from 
@@ -91,7 +92,10 @@ api_key = 'AIzaSyBJbOnt6HHIkb8lR8755a6kC1h2sYID5BU'
 
 ''' uncomment this to test search function  '''
 _search=search(api_key,"yo yo")
-save_to_csv(_search['fields'],_search['rows'],'search.csv')
+# save_to_csv(_search['fields'],_search['rows'],'search.csv')
 
+# field=['a','b']
+# rows =[['aa','bb'],['cc','dd']]
+# save_to_csv(field,rows,'hi.csv')
 
 
