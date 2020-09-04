@@ -36,7 +36,9 @@ def get_video_detail(api_key,_id):
 	rows.append(statistics['likeCount'])
 	#to get dislikes
 	rows.append(statistics['dislikeCount'])
-	details ={'fields':['title','description', 'viewst','likes','dislikes'],'rows':[rows]}
+	#to get comment count
+	rows.append(statistics['commentCount'])
+	details ={'fields':['title','description', 'viewst','likes','dislikes',"commentCount"],'rows':[rows]}
 	# print(rows)
 	return details
 
